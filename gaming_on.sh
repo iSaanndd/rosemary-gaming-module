@@ -18,3 +18,15 @@ done
 for blk in /sys/block/*/queue/scheduler; do
     echo noop > $blk
 done
+while true; do
+    TEMP=$(cat /sys/class/power_supply/battery/temp)
+    TEMP_C=$((TEMP / 10))
+
+    if [ "$TEMP_C" -ge 40 ]; then
+        # Turunkan CPU kalau panas
+        echo 1800000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+        echo 2000000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
+    fi
+
+    sleep 10
+done &
