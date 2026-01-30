@@ -1,0 +1,12 @@
+# Disable log berlebih
+logd.size=64K
+persist.logd.size=64K
+
+# Smooth rendering
+debug.sf.hw=1
+debug.egl.hw=1
+persist.sys.ui.hw=1
+
+# VM tuning ringan
+vm.swappiness=20
+vm.vfs_cache_pressure=100
